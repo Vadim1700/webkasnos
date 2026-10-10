@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maestro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+    <div class="stars-overlay"></div>
+
+    <header class="header">
+        <div class="logo">
+            <div class="logo-square"></div>
+            <span>Maestro</span>
+        </div>
+        <div class="online-status">
+            <span id="current-time">--:--:--</span>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="hero-title">
+            <h1>Maestro</h1>
+            <p>Что-то большее, чем просто Telegram бот.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="card-corner top-left"></div>
+            <div class="card-corner bottom-right"></div>
+            <div class="card-header">01 / 12</div>
+            <div class="card-body">
+                <p>Цифровая тень есть у каждого — мы умеем читать её без остатка.</p>
+                <div class="card-divider"></div>
+            </div>
+        </div>
+
+        <div class="buttons-container">
+            <button class="nav-btn" onclick="window.location.href='functions.html'">
+                <span>ФУНКЦИИ</span>
+                <span class="arrow">→</span>
+            </button>
+            <button class="nav-btn" onclick="window.location.href='reviews.html'">
+                <span>ОТЗЫВЫ</span>
+                <span class="arrow">→</span>
+            </button>
+        </div>
+
+        <div class="footer-text">
+            <a href="privacy.html" class="privacy-link">политика конфиденциальности</a>
+        </div>
+    </main>
+
+    <!-- КРАСНАЯ ПЛАШКА -->
+    <div id="notification-bar" style="display: none;">
+        🎩 Увы, вы не отправили сумму в течение 5 минут. Попробуйте заново, создав новую заявку на пополнение.
+        <br>Если у вас проблемы с платежом, напишите в техническую поддержку <a href="https://t.me/Technical_helpers" target="_blank">@Technical_helpers</a> ⛑️
+    </div>
+
+    <!-- МОДАЛЬНЫЕ ОКНА (остаются как в прошлом ответе) -->
+    <div class="modal-overlay" id="accessModal" style="display: none;"> ... </div>
+    <div class="modal-overlay" id="tariffModal" style="display: none;"> ... </div>
+    <div class="modal-overlay" id="paymentMethodModal" style="display: none;"> ... </div>
+    <div class="modal-overlay" id="paymentCardModal" style="display: none;"> ... </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('user-id-display').textContent = generateUserID();
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.module-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const title = this.querySelector('.btn-title').textContent;
+                    openModal('accessModal');
+                    document.getElementById('modal-module-title').textContent = `МОДУЛЬ "${title}"`;
+                });
+            });
+            document.getElementById('btn-check-payment').addEventListener('click', showNotification);
+        });
+    </script>
+</body>
+</html>
